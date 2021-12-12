@@ -1,6 +1,5 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-#include "game.h"
 
 #include <QMainWindow>
 
@@ -16,10 +15,26 @@ public:
 
      explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    Game *newGame;
 
 public slots:
-    void informGame();
+    void changePicture1_1();
+    void changePicture1_2();
+
+    void changePicture2_1();
+    void changePicture2_2();
+
+    void changePicture3_1();
+    void changePicture3_2();
+
+    void changePicture4_1();
+    void changePicture4_2();
+
+    void changePicture5_1();
+    void changePicture5_2();
+
+    void changePicture6_1();
+    void changePicture6_2();
+
 
 private:
     Ui::MainWindow *ui;
