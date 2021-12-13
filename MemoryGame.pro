@@ -10,12 +10,14 @@ CONFIG += c++11
 
 SOURCES += \
     card.cpp \
+    game.cpp \
     main.cpp \
     mainwindow.cpp \
     user.cpp
 
 HEADERS += \
     card.h \
+    game.h \
     mainwindow.h \
     user.h
 

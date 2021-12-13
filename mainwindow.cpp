@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    game = new Game(this);
 
     ui->setupUi(this);
     connect(ui->pushButton1, &QPushButton::clicked, this, &MainWindow::changePicture1_1);
@@ -15,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->pushButton4, &QPushButton::clicked, this, &MainWindow::changePicture4_1);
     connect(ui->pushButton5, &QPushButton::clicked, this, &MainWindow::changePicture5_1);
     connect(ui->pushButton6, &QPushButton::clicked, this, &MainWindow::changePicture6_1);
+
 
 }
 

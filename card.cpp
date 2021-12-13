@@ -7,10 +7,6 @@ Card::Card(Symbol symbol, bool visible, User* user)
     m_visible = visible;
 }
 
-bool Card::visible() const
-{
-    return m_visible;
-}
 
 void Card::setVisible(bool newVisible)
 {
