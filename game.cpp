@@ -19,18 +19,18 @@ Game::Game(QObject* parent): QObject(parent)
 }
 
 void Game::doSomething(int index){
+    int index2 = -1;
     if(m_cards[index]->scored()==true){
         qDebug() <<"already scored";
         return;
     }
     m_cards[index]->setVisible(true);
-    int index2 = 0;
     int cardsOpen = m_user->getCardsOpen();
     cardsOpen++;
     m_user->setCardsOpen(cardsOpen);
     if(m_user->getCardsOpen()==2){
         for(int i=0;i < 6;i++){
-            if(m_cards[i]->visible()==true&&!(m_cards[i]->visible()==index)){
+            if(m_cards[i]->visible()==true&&i!=index){
                 index2 = i;
                 break;
             }
@@ -42,11 +42,6 @@ void Game::doSomething(int index){
             m_cards[index]->setScored(true);
             m_cards[index2]->setScored(true);
             m_user->setCardsOpen(0);
-
-
-
-
-
         }
         else{
             qDebug()<<"false";
