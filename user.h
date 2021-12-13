@@ -6,6 +6,9 @@ class User
 {
 public:
     User();
+    virtual ~User(){
+
+    }
 
 
     int life() const;
