@@ -24,9 +24,12 @@ signals:
     void informPicture5();
     void informPicture6();
 
+    void informButton(int);
+
     public slots:
 
     void changeVisibility(int index, int index2);
+
 
     void doSomething(int index);
 private:

@@ -20,11 +20,11 @@ Game::Game(QObject* parent): QObject(parent)
 
 void Game::doSomething(int index){
     int index2 = -1;
-    if(m_cards[index]->scored()==true){
-        qDebug() <<"already scored";
-        return;
-    }
     m_cards[index]->setVisible(true);
+   /* if(m_cards[index]->visible()){
+        emit informButton(index);
+        qDebug() <<"button deactivated";
+    }*/
     int cardsOpen = m_user->getCardsOpen();
     cardsOpen++;
     m_user->setCardsOpen(cardsOpen);
@@ -41,7 +41,9 @@ void Game::doSomething(int index){
             m_user->setCardsOpen(0);
             m_cards[index]->setScored(true);
             m_cards[index2]->setScored(true);
-            m_user->setCardsOpen(0);
+            m_cards[index]->setVisible(false);
+            m_cards[index2]->setVisible(false);
+
         }
         else{
             qDebug()<<"false";

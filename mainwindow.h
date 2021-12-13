@@ -37,6 +37,8 @@ public slots:
     void changePicture6_1();
     void changePicture6_2();
 
+    void disableButton(int index);
+
 
 private:
     Game* game;
