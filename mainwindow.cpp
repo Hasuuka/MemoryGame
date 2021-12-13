@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "game.h"
 
 
 
@@ -17,6 +18,14 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->pushButton4, &QPushButton::clicked, this, &MainWindow::changePicture4_1);
     connect(ui->pushButton5, &QPushButton::clicked, this, &MainWindow::changePicture5_1);
     connect(ui->pushButton6, &QPushButton::clicked, this, &MainWindow::changePicture6_1);
+
+
+    connect(game, &Game::informPicture1, this, &MainWindow::changePicture1_2 );
+    connect(game, &Game::informPicture2, this, &MainWindow::changePicture2_2 );
+    connect(game, &Game::informPicture3, this, &MainWindow::changePicture3_2 );
+    connect(game, &Game::informPicture4, this, &MainWindow::changePicture4_2 );
+    connect(game, &Game::informPicture5, this, &MainWindow::changePicture5_2 );
+    connect(game, &Game::informPicture6, this, &MainWindow::changePicture6_2 );
 
 
 }

@@ -5,25 +5,24 @@
 Game::Game(QObject* parent): QObject(parent)
 {
     m_user = new User();
-    m_cards[0]= new Card(circle, false, m_user);
-    m_cards[1]= new Card(rectangle, false, m_user);
-    m_cards[2]= new Card(circle, false, m_user);
-    m_cards[3]= new Card(triangle, false, m_user);
-    m_cards[4]= new Card(rectangle, false, m_user);
-    m_cards[5]= new Card(triangle, false, m_user);
+    m_cards[0]= new Card(circle, m_user);
+    m_cards[1]= new Card(rectangle, m_user);
+    m_cards[2]= new Card(circle, m_user);
+    m_cards[3]= new Card(triangle, m_user);
+    m_cards[4]= new Card(rectangle, m_user);
+    m_cards[5]= new Card(triangle, m_user);
 
     connect(this, &Game::inform, this, &Game::doSomething);
 
-    connect(this, &Game::informPicture1, MainWindow, &MainWindow::changePicture1_2 );
-    connect(this, &Game::informPicture2, MainWindow, &MainWindow::changePicture2_2 );
-    connect(this, &Game::informPicture3, MainWindow, &MainWindow::changePicture3_2 );
-    connect(this, &Game::informPicture4, MainWindow, &MainWindow::changePicture4_2 );
-    connect(this, &Game::informPicture5, MainWindow, &MainWindow::changePicture5_2 );
-    connect(this, &Game::informPicture6, MainWindow, &MainWindow::changePicture6_2 );
+
 
 }
 
 void Game::doSomething(int index){
+    if(m_cards[index]->scored()==true){
+        qDebug() <<"already scored";
+        return;
+    }
     m_cards[index]->setVisible(true);
     int index2 = 0;
     int cardsOpen = m_user->getCardsOpen();
@@ -39,10 +38,20 @@ void Game::doSomething(int index){
         if(m_cards[index]->compareCards(m_cards[index2]))
         {
             qDebug()<<"true";
+            m_user->setCardsOpen(0);
+            m_cards[index]->setScored(true);
+            m_cards[index2]->setScored(true);
+            m_user->setCardsOpen(0);
+
+
+
+
+
         }
         else{
             qDebug()<<"false";
 
+            changeVisibility(index, index2);
         }
     }
 
@@ -50,6 +59,10 @@ void Game::doSomething(int index){
 
 
 void Game::changeVisibility(int index, int index2){
+    m_cards[index]->setVisible(false);
+    m_cards[index2]->setVisible(false);
+    m_user->setCardsOpen(0);
+
     switch(index){
     case 0:
         emit informPicture1();

@@ -1,10 +1,11 @@
 #include "card.h"
 #include "QDebug"
-Card::Card(Symbol symbol, bool visible, User* user)
+Card::Card(Symbol symbol, User* user)
 {
     m_user = user;
     m_symbol = symbol;
-    m_visible = visible;
+    m_visible = false;
+    m_scored = false;
 }
 
 
@@ -14,7 +15,6 @@ void Card::setVisible(bool newVisible)
 }
 
 bool Card::compareCards(Card* card){
-    qDebug() << card->m_symbol << "card 2:" << this->m_symbol;
     if(card->m_symbol==this->m_symbol){
         int points = m_user->points();
         points++;
@@ -33,4 +33,14 @@ bool Card::compareCards(Card* card){
 bool Card::visible() const
 {
     return m_visible;
+}
+
+bool Card::scored() const
+{
+    return m_scored;
+}
+
+void Card::setScored(bool newScored)
+{
+    m_scored = newScored;
 }
