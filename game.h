@@ -24,10 +24,14 @@ signals:
     void informPicture5();
     void informPicture6();
 
-    void informButton(int);
+    void informButtonOn(int);
+    void informButtonOff(int);
+    void setPoints(int);
+    void setLifes(int);
+
 
     public slots:
-
+    void newGame();
     void changeVisibility(int index, int index2);
 
 

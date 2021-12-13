@@ -2,8 +2,6 @@
 #include "ui_mainwindow.h"
 #include "game.h"
 
-
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -27,8 +25,16 @@ MainWindow::MainWindow(QWidget *parent)
     connect(game, &Game::informPicture5, this, &MainWindow::changePicture5_2 );
     connect(game, &Game::informPicture6, this, &MainWindow::changePicture6_2 );
 
-    connect(game, &Game::informButton, this, &MainWindow::disableButton);
+    connect(game, &Game::informButtonOff, this, &MainWindow::disableButton);
+    connect(game, &Game::informButtonOn, this, &MainWindow::enableButton);
 
+    connect(game, &Game::setPoints, this, &MainWindow::setPointsUI);
+    connect(game, &Game::setLifes, this, &MainWindow::setLifeUI);
+    connect(ui->actionNeues_Spiel, &QAction::triggered,game, &Game::newGame);
+
+    ui->progressBar->setMinimum(0);
+    ui->progressBar->setMaximum(3);
+    ui->progressBar->setValue(3);
 
 }
 
@@ -36,9 +42,6 @@ MainWindow::MainWindow(QWidget *parent)
 void MainWindow::changePicture1_1(){                    //Pushbutton1
    ui->picture1->setPixmap(QPixmap(QString::fromUtf8(":/circle.png")));
    emit game->inform(0);
-
-   //emit game->informButton(0);
-
 
 }
 void MainWindow::changePicture1_2(){
@@ -116,6 +119,70 @@ void MainWindow::disableButton(int index){
     case 5:
         ui->pushButton6->setDisabled(true);
         break;
+    }
+}
+
+void MainWindow::enableButton(int index){
+    switch(index){
+    case 0:
+        ui->pushButton1->setDisabled(false);
+        break;
+    case 1:
+        ui->pushButton2->setDisabled(false);
+        break;
+    case 2:
+        ui->pushButton3->setDisabled(false);
+        break;
+    case 3:
+        ui->pushButton4->setDisabled(false);
+        break;
+    case 4:
+        ui->pushButton5->setDisabled(false);
+        break;
+    case 5:
+        ui->pushButton6->setDisabled(false);
+        break;
+    }
+}
+
+void MainWindow::setPointsUI(int index){
+
+    switch (index) {
+        case 2:
+            ui->responseLabel->setText("1 von 3 Punkten");
+            break;
+        case 4:
+            ui->responseLabel->setText("2 von 3 Punkten");
+            break;
+        case 6:
+            ui->responseLabel->setText("Sie haben gewonnen! :)");
+            break;
+        case -1:
+            ui->responseLabel->setText("Sie haben verloren! :´(");
+            break;
+        default:
+            ui->responseLabel->setText("0 von 3 Punkten");
+            break;
+    }
+}
+
+void MainWindow::setLifeUI(int index){
+    switch (index) {
+        case 3:
+            ui->progressBar->setValue(3);
+            break;
+        case 2:
+            ui->progressBar->setValue(2);
+            break;
+        case 1:
+            ui->progressBar->setValue(1);
+            break;
+        case 0:
+            ui->progressBar->setValue(0);
+            break;
+        default:
+
+            break;
     }
 }
 

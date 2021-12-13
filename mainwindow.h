@@ -38,6 +38,10 @@ public slots:
     void changePicture6_2();
 
     void disableButton(int index);
+    void enableButton(int index);
+
+    void setPointsUI(int points);
+    void setLifeUI(int life);
 
 
 private:

@@ -1,5 +1,5 @@
 #include "card.h"
-#include "QDebug"
+
 Card::Card(Symbol symbol, User* user)
 {
     m_user = user;
